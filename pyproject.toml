@@ -24,7 +24,7 @@ classifiers = [  #! Update me
   "Topic :: Software Development :: Libraries :: Python Modules",
   "License :: OSI Approved :: Apache Software License",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.11",
 ]
 
 [tool.poetry.scripts]
@@ -32,7 +32,7 @@ classifiers = [  #! Update me
 "snyk-to-azure-boards" = "snyk_to_azure_boards.__main__:app"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.11"
 
 typer = {extras = ["all"], version = "^0.4.0"}
 rich = "^10.14.0"
