@@ -21,7 +21,7 @@ poetry-remove:
 install:
 	poetry lock -n && poetry export --without-hashes > requirements.txt
 	poetry install -n
-	-poetry run mypy --install-types --non-interactive ./
+	-poetry run mypy --install-types --non-interactive --implicit-reexport ./
 
 .PHONY: pre-commit-install
 pre-commit-install:
@@ -30,7 +30,7 @@ pre-commit-install:
 #* Formatters
 .PHONY: codestyle
 codestyle:
-	poetry run pyupgrade --exit-zero-even-if-changed --py39-plus **/*.py
+	poetry run pyupgrade --exit-zero-even-if-changed --py311-plus **/*.py
 	poetry run isort --settings-path pyproject.toml ./
 	poetry run black --config pyproject.toml ./
 
@@ -56,7 +56,6 @@ mypy:
 .PHONY: check-safety
 check-safety:
 	poetry check
-	poetry run safety check --full-report
 	poetry run bandit -ll --recursive snyk_to_azure_boards tests
 
 .PHONY: lint
