@@ -56,7 +56,6 @@ mypy:
 .PHONY: check-safety
 check-safety:
 	poetry check
-	poetry run safety check --full-report
 	poetry run bandit -ll --recursive snyk_to_azure_boards tests
 
 .PHONY: lint
