@@ -1,4 +1,3 @@
-# type: ignore[attr-defined]
 from typing import Optional
 
 from enum import Enum
@@ -31,14 +30,17 @@ console = Console()
 def version_callback(print_version: bool) -> None:
     """Print the version of the package."""
     if print_version:
-        console.print(f"[yellow]snyk-to-azure-boards[/] version: [bold blue]{version}[/]")
+        console.print(
+            f"[yellow]snyk-to-azure-boards[/] version: [bold blue]{version}[/]"
+        )
         raise typer.Exit()
 
 
 @app.command(name="")
 def main(
     name: str = typer.Option(..., help="Person to greet."),
-    color: Optional[Color] = typer.Option(
+    color: Color
+    | None = typer.Option(
         None,
         "-c",
         "--color",
