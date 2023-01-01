@@ -1,22 +1,14 @@
-from typing import Optional
-
-from enum import Enum
-from random import choice
-
 import typer
 from rich.console import Console
 
+import snyk
+
 from snyk_to_azure_boards import version
-from snyk_to_azure_boards.example import hello
 
 
-class Color(str, Enum):
-    white = "white"
-    red = "red"
-    cyan = "cyan"
-    magenta = "magenta"
-    yellow = "yellow"
-    green = "green"
+def get_client(token: str):
+    client = snyk.SnykClient(token=token)
+    return client
 
 
 app = typer.Typer(
@@ -36,17 +28,12 @@ def version_callback(print_version: bool) -> None:
         raise typer.Exit()
 
 
-@app.command(name="")
+@app.command()
 def main(
-    name: str = typer.Option(..., help="Person to greet."),
-    color: Color
-    | None = typer.Option(
+    snyk_token: str = typer.Option(
         None,
-        "-c",
-        "--color",
-        "--colour",
-        case_sensitive=False,
-        help="Color for print. If not specified then choice will be random.",
+        "--token",
+        envvar="SNYK_TOKEN",
     ),
     print_version: bool = typer.Option(
         None,
@@ -57,12 +44,14 @@ def main(
         help="Prints the version of the snyk-to-azure-boards package.",
     ),
 ) -> None:
-    """Print a greeting with a giving name."""
-    if color is None:
-        color = choice(list(Color))
+    """
+    Given a Snyk Project ID, get the issues and send them to Azure Boards.
+    Must have a valid Snyk token either as a SNYK_TOKEN environment variable
+    or submit it as an optional argument.
+    """
 
-    greeting: str = hello(name)
-    console.print(f"[bold {color}]{greeting}[/]")
+    client = get_client(token=snyk_token)
+    return None
 
 
 if __name__ == "__main__":
