@@ -14,10 +14,10 @@ repository = "https://github.com/writingpanda/snyk-to-azure-boards"
 homepage = "https://github.com/writingpanda/snyk-to-azure-boards"
 
 # Keywords description https://python-poetry.org/docs/pyproject/#keywords
-keywords = ["azure boards", "snyk"]  #! Update me
+keywords = ["azure boards", "snyk"]
 
 # Pypi classifiers: https://pypi.org/classifiers/
-classifiers = [  #! Update me
+classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
   "Operating System :: OS Independent",
@@ -76,7 +76,7 @@ black = {version = "^23.1a1", allow-prereleases = true}
 
 [tool.black]
 # https://github.com/psf/black
-target-version = ["py39"]
+target-version = ["py311"]
 line-length = 88
 color = true
 
@@ -98,7 +98,7 @@ exclude = '''
 
 [tool.isort]
 # https://github.com/timothycrosley/isort/
-py_version = 39
+py_version = 311
 line_length = 88
 
 known_typing = ["typing", "types", "typing_extensions", "mypy", "mypy_extensions"]
@@ -111,7 +111,7 @@ color_output = true
 
 [tool.mypy]
 # https://mypy.readthedocs.io/en/latest/config_file.html#using-a-pyproject-toml-file
-python_version = 3.9
+python_version = 3.11
 pretty = true
 show_traceback = true
 color_output = true

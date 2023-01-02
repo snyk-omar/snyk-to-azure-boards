@@ -618,3 +618,6 @@ MigrationBackup/
 
 # Snyk Code files
 .dccache
+
+# Pycharm
+.idea/

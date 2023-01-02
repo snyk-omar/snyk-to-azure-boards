@@ -3,11 +3,6 @@ SHELL := /usr/bin/env bash
 PYTHON := python
 PYTHONPATH := `pwd`
 
-#* Run
-.PHONY: run
-run:
-	poetry run snyk_to_azure_boards
-
 #* Poetry
 .PHONY: poetry-download
 poetry-download:
